@@ -6,6 +6,8 @@
     i18n_domain="chromsystems.userdata">
 
   <five:registerPackage package="." initialize=".initialize" />
+  
+  <i18n:registerTranslations directory="locales" />
 
   <genericsetup:registerProfile
       name="default"
@@ -14,6 +16,6 @@
       description="Installs the chromsystems.userdata package"
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
-  <!-- -*- extra stuff goes here -*- -->
+  
   
 </configure>
