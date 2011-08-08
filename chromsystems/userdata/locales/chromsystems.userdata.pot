@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-08-05 12:29+0000\n"
+"POT-Creation-Date: 2011-08-08 11:28+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,140 +18,95 @@ msgstr ""
 "Domain: chromsystems.userdata\n"
 
 #: ./../userschema.py:30
-msgid "Miss"
+msgid "Frau"
 msgstr ""
 
 #: ./../userschema.py:31
-msgid "Mister"
+msgid "Herr"
+msgstr ""
+
+#. Default: "Registration form"
+#: ./../customregistration.py:15
+msgid "heading_registration_form"
 msgstr ""
 
 #. Default: "Tick this box to indicate that you have found, read and accepted the terms of use for this site. "
-#: ./../userschema.py:103
+#: ./../userschema.py:86
 msgid "help_accept"
 msgstr ""
 
-#. Default: "Fill in the city you live in."
-#: ./../userschema.py:67
-msgid "help_city"
-msgstr ""
-
 #. Default: "If you have any comments concerning your registration, please leave them here."
-#: ./../userschema.py:96
+#: ./../userschema.py:79
 msgid "help_comments"
 msgstr ""
 
-#. Default: "Please enter your company name."
-#: ./../userschema.py:55
-msgid "help_company"
-msgstr ""
-
-#. Default: "Fill in the country you live in."
-#: ./../userschema.py:78
-msgid "help_country"
-msgstr ""
-
 #. Default: "Please enter your customer identification."
-#: ./../userschema.py:49
+#: ./../userschema.py:46
 msgid "help_customer"
 msgstr ""
 
-#. Default: "Leave your fax number so we can reach you."
-#: ./../userschema.py:90
-msgid "help_fax"
-msgstr ""
-
-#. Default: "Fill in your given name."
-#: ./../userschema.py:37
-msgid "help_firstname"
-msgstr ""
-
-#. Default: "Fill in your surname or your family name."
-#: ./../userschema.py:43
-msgid "help_lastname"
-msgstr ""
-
-#. Default: "Leave your phone number so we can reach you."
-#: ./../userschema.py:84
-msgid "help_phone"
-msgstr ""
-
-#. Default: "Are you a girl or a boy?"
-#: ./../userschema.py:27
-msgid "help_salutation"
-msgstr ""
-
-#. Default: "Fill in the street you live in."
-#: ./../userschema.py:61
-msgid "help_street"
-msgstr ""
-
-#. Default: "Please enter your zipcode."
-#: ./../userschema.py:73
-msgid "help_zipcode"
-msgstr ""
-
 #. Default: "Accept terms of use"
-#: ./../userschema.py:102
+#: ./../userschema.py:85
 msgid "label_accept"
 msgstr ""
 
 #. Default: "City"
-#: ./../userschema.py:66
+#: ./../userschema.py:59
 msgid "label_city"
 msgstr ""
 
 #. Default: "Comments"
-#: ./../userschema.py:95
+#: ./../userschema.py:78
 msgid "label_comments"
 msgstr ""
 
 #. Default: "Company"
-#: ./../userschema.py:54
+#: ./../userschema.py:51
 msgid "label_company"
 msgstr ""
 
 #. Default: "Country"
-#: ./../userschema.py:77
+#: ./../userschema.py:66
 msgid "label_country"
 msgstr ""
 
 #. Default: "Customer"
-#: ./../userschema.py:48
+#: ./../userschema.py:45
 msgid "label_customer"
 msgstr ""
 
 #. Default: "Fax number"
-#: ./../userschema.py:89
+#: ./../userschema.py:74
 msgid "label_fax"
 msgstr ""
 
 #. Default: "First name"
-#: ./../userschema.py:36
+#: ./../userschema.py:37
 msgid "label_firstname"
 msgstr ""
 
 #. Default: "Last name"
-#: ./../userschema.py:42
+#: ./../userschema.py:41
 msgid "label_lastname"
 msgstr ""
 
 #. Default: "Telephone number"
-#: ./../userschema.py:83
+#: ./../userschema.py:70
 msgid "label_phone"
 msgstr ""
 
 #. Default: "Salutation"
-#: ./../userschema.py:26
+#: ./../userschema.py:28
 msgid "label_salutation"
 msgstr ""
 
 #. Default: "Street"
-#: ./../userschema.py:60
+#: ./../userschema.py:55
 msgid "label_street"
 msgstr ""
 
 #. Default: "Zipcode"
-#: ./../userschema.py:72
+#: ./../userschema.py:63
 msgid "label_zipcode"
 msgstr ""
 

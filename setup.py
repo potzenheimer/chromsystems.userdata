@@ -26,6 +26,8 @@ setup(name='chromsystems.userdata',
       install_requires=[
           'setuptools',
           'plone.app.users',
+          'plone.directives.form',
+          'plone.app.z3cform',
           # -*- Extra requirements: -*-
       ],
       entry_points="""
