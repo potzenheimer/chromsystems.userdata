@@ -1,6 +1,19 @@
 Changelog
 =========
 
+1.0b1
+-------------------
+
+- Include locales translations (cb)
+
+- Include a specific IChromsystemUserdata Layer (cb)
+
+- Subclass the registration form for flexibility (cb)
+
+- Include the default user fields (cb)
+
+- Setup user schema (cb)
+
 1.0dev (unreleased)
 -------------------
 

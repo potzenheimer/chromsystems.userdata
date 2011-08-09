@@ -13,7 +13,7 @@ class CustomRegistrationForm(RegistrationForm):
     """
     
     label = _(u'heading_registration_form', default=u'Registration form')
-    description = u""
+    description = _(u"Please fill in the registration form details.")
     template = ViewPageTemplateFile('register_form.pt')
 
     @property

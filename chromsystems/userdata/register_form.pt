@@ -16,7 +16,6 @@
         
         <div id="content">    
             <tal:mailhost tal:condition="view/showForm">
-                <p>Test</p>
                 <div metal:use-macro="context/base-pageform.html/form" />
             </tal:mailhost>
 
