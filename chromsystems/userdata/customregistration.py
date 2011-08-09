@@ -4,7 +4,8 @@ from plone.app.users.browser.register import RegistrationForm
 from plone.app.users.browser.register import CantChoosePasswordWidget
 from Products.CMFCore.interfaces import ISiteRoot
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from z3c.form.browser.radio import RadioWidget
+#from z3c.form.browser.radio import RadioWidget
+from zope.app.form.browser import RadioWidget as _RadioWidget
 from chromsystems.userdata import _
 
 class CustomRegistrationForm(RegistrationForm):
@@ -49,12 +50,12 @@ class CustomRegistrationForm(RegistrationForm):
             # link to set his password if he can set this password in
             # the current form already.
             defaultFields = defaultFields.omit('mail_me')
-        #defaultFields['salutation'].custom_widget = CustomRadioWidget
+        defaultFields['salutation'].custom_widget = CustomRadioWidget
         return defaultFields
 
-def CustomRadioWidget(self, field, request):
+def CustomRadioWidget(field, request):
     """Widget for salutation field.
     """
-    request = self.request
-    widget = RadioWidget(field, request)
+    vocabulary = field.vocabulary
+    widget = _RadioWidget(field, vocabulary, request)
     return widget

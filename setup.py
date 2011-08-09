@@ -28,6 +28,7 @@ setup(name='chromsystems.userdata',
           'plone.app.users',
           'plone.directives.form',
           'plone.app.z3cform',
+          'five.grok',
           # -*- Extra requirements: -*-
       ],
       entry_points="""

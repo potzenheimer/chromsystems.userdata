@@ -62,8 +62,13 @@ class IEnhancedUserDataSchema(IUserDataSchema):
     zipcode = schema.TextLine(
         title=_(u'label_zipcode', default=u'Zipcode'),
         )
-    country = schema.TextLine(
+    #country = schema.TextLine(
+    #    title=_(u'label_country', default=u'Country'),
+    #    required=False,
+    #    )
+    country = schema.Choice(
         title=_(u'label_country', default=u'Country'),
+        vocabulary=u"chromsystems.userdata.Countries",
         required=False,
         )
     phone = schema.TextLine(
