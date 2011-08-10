@@ -68,7 +68,7 @@ class IEnhancedUserDataSchema(IUserDataSchema):
     #    )
     country = schema.Choice(
         title=_(u'label_country', default=u'Country'),
-        vocabulary=u"chromsystems.userdata.Countries",
+        vocabulary=u"chromsystems.userdata.CountryList",
         required=False,
         )
     phone = schema.TextLine(
