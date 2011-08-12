@@ -1,6 +1,11 @@
 Changelog
 =========
 
+1.0b6
+-------------------
+
+- e-factor the configuration in order to make the pacakge installable (cb)
+
 1.0b5
 -------------------
 
