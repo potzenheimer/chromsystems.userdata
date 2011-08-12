@@ -16,7 +16,7 @@ class IMemberImport(form.Schema):
     
     csvfile = NamedFile(
         title=_(u"File Upload"),
-        decription=_(u"Please uplaod a file in csv format containing the user information to be imported."),
+        description=_(u"Please uplaod a file in csv format containing the user information to be imported."),
         required=True,
     )
     

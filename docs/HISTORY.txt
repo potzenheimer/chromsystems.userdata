@@ -1,6 +1,11 @@
 Changelog
 =========
 
+1.0b9
+-------------------
+
+- fix wrong schema attribute which prevents startup (cb)
+
 1.0b8
 -------------------
 
