@@ -25,6 +25,7 @@ setup(name='chromsystems.userdata',
       zip_safe=False,
       install_requires=[
           'setuptools',
+          'Products.CMFPlone',
           'plone.app.users',
           'plone.directives.form',
           'plone.app.z3cform',

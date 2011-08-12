@@ -7,6 +7,8 @@
     xmlns:grok="http://namespaces.zope.org/grok"
     i18n_domain="chromsystems.userdata">
   
+  <!-- Include configuration for dependencies listed in setup.py -->
+  <includeDependencies package="." />
   <i18n:registerTranslations directory="locales" />
   <include package="five.grok" />
   <grok:grok package="." />
@@ -15,7 +17,7 @@
       name="default"
       title="chromsystems.userdata"
       directory="profiles/default"
-      description="Provides custom user data and registration functionality for chromsystems.de."
+      description="Provides custom user data and registration functionality for chromsystems"
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
   <browser:page
