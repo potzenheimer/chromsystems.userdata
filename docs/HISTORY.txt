@@ -1,6 +1,11 @@
 Changelog
 =========
 
+1.0b8
+-------------------
+
+- include dependency on `plone.namedfile` (cb)
+
 1.0b7
 -------------------
 

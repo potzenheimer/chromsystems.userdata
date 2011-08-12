@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '1.0b7'
+version = '1.0b8'
 
 setup(name='chromsystems.userdata',
       version=version,
@@ -29,6 +29,7 @@ setup(name='chromsystems.userdata',
           'plone.app.users',
           'plone.directives.form',
           'plone.app.z3cform',
+          'plone.namedfile [blobs]',
           'five.grok',
           # -*- Extra requirements: -*-
       ],
