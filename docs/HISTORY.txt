@@ -1,6 +1,11 @@
 Changelog
 =========
 
+1.0b7
+-------------------
+
+- re-release with all sources setup correctly (cb)
+
 1.0b6
 -------------------
 
