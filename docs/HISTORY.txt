@@ -1,6 +1,11 @@
 Changelog
 =========
 
+1.0b4
+-------------------
+
+- re-release due to missing docs folder (cb)
+
 1.0b3
 -------------------
 
