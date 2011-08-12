@@ -7,10 +7,10 @@
     xmlns:grok="http://namespaces.zope.org/grok"
     i18n_domain="chromsystems.userdata">
   
+  <five:registerPackage package="." initialize=".initialize" />
   <!-- Include configuration for dependencies listed in setup.py -->
   <includeDependencies package="." />
   <i18n:registerTranslations directory="locales" />
-  <include package="five.grok" />
   <grok:grok package="." />
 
   <genericsetup:registerProfile

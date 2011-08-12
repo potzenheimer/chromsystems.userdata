@@ -1,6 +1,11 @@
 Changelog
 =========
 
+1.0b5
+-------------------
+
+- initialize the package as a zope2 product (cb)
+
 1.0b4
 -------------------
 
