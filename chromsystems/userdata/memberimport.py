@@ -51,18 +51,32 @@ class MemberImportForm(form.SchemaForm):
         io = StringIO.StringIO(data)
         reader = csv.reader(io, delimiter=';', dialect="excel", quotechar='"')
         header = reader.next()
-        acl_tool = getToolByName(context, 'acl_users')
+        regtool = getToolByName(context, 'portal_registration')
         processed_records = 0
         for row in reader:
             uid = self.getSpecificRecord(header, row, name='username')
             pwd = self.getSpecificRecord(header, row, name='password')
-            acl_tool.source_users.addUser(uid, uid, pwd)
+            firstname = self.getSpecificRecord(header, row, name='firstname')
+            lastname = self.getSpecificRecord(header, row, name='lastname')
+            fullname = ' '.join(firstname, lastname)
+            email = self.getSpecificRecord(header, row, name='email')
+            properties = {
+                'username'  :   uid,
+                'fullname'  :   fullname.encode('utf-8'),
+                'email'     :   email
+            }
+            try:
+                member = regtool.addMember(uid, pwd, properties=properties)
+            except ValueError, e:
+                IStatusMessage(self.request).addStatusMessage(_(u"Culd not create user:") + unicode(e), "error")
+                return None
             processed_records += 1
         
         return processed_records
     
     def getSpecificRecord(header, row, name):
-        """ Process a specific record in the import file by getting a cell by name
+        """ Process a specific record in the import file accessing
+            a specific cell by its name
         """
         assert type(name) == unicode
         index = None
