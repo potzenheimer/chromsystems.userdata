@@ -30,6 +30,7 @@ setup(name='chromsystems.userdata',
           'plone.directives.form',
           'plone.app.z3cform',
           'plone.namedfile [blobs]',
+          'plone.formwidget.namedfile',
           'five.grok',
           # -*- Extra requirements: -*-
       ],

@@ -8,7 +8,7 @@
     i18n_domain="chromsystems.userdata">
   
     <five:registerPackage package="." initialize=".initialize" />
-    <include package="five.grok" />
+    <includeDependencies package="." />
     <grok:grok package="." />
   
   <i18n:registerTranslations directory="locales" />

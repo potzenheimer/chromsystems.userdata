@@ -1,6 +1,6 @@
 from zope.interface import Interface, implements
 from zope import schema
-from plone.directives import form
+#from plone.directives import form
 from z3c.form.browser.radio import RadioWidget
 from chromsystems.userdata import _
 from plone.app.users.userdataschema import IUserDataSchemaProvider
@@ -23,7 +23,7 @@ class IEnhancedUserDataSchema(IUserDataSchema):
     """ Use all the fields from the default user data schema, and add various
     extra fields.
     """
-    form.widget(salutation=RadioWidget)
+    #form.widget(salutation=RadioWidget)
     salutation = schema.Choice(
         title=_(u'label_salutation', default=u'Salutation'),
         values = [
