@@ -6,11 +6,6 @@ from chromsystems.userdata import _
 from plone.app.users.userdataschema import IUserDataSchemaProvider
 from plone.app.users.userdataschema import IUserDataSchema
 
-def validateAccept(value):
-    if not value == True:
-        return False
-    return True
-
 class UserDataSchemaProvider(object):
     implements(IUserDataSchemaProvider)
 
@@ -23,7 +18,6 @@ class IEnhancedUserDataSchema(IUserDataSchema):
     """ Use all the fields from the default user data schema, and add various
     extra fields.
     """
-    #form.widget(salutation=RadioWidget)
     salutation = schema.Choice(
         title=_(u'label_salutation', default=u'Salutation'),
         values = [
@@ -62,10 +56,6 @@ class IEnhancedUserDataSchema(IUserDataSchema):
     zipcode = schema.TextLine(
         title=_(u'label_zipcode', default=u'Zipcode'),
         )
-    #country = schema.TextLine(
-    #    title=_(u'label_country', default=u'Country'),
-    #    required=False,
-    #    )
     country = schema.Choice(
         title=_(u'label_country', default=u'Country'),
         vocabulary=u"chromsystems.userdata.CountryList",
@@ -85,13 +75,5 @@ class IEnhancedUserDataSchema(IUserDataSchema):
                       default=u"If you have any comments concerning your registration, please "
                         "leave them here."),
         required=False,
-        )
-    accept = schema.Bool(
-        title=_(u'label_accept', default=u'Accept terms of use'),
-        description=_(u'help_accept',
-                      default=u"Tick this box to indicate that you have found,"
-                      " read and accepted the terms of use for this site. "),
-        required=True,
-        constraint=validateAccept,
         )
 
