@@ -70,7 +70,7 @@ class MemberImportForm(form.SchemaForm):
             zipcode = self.getSpecificRecord(header, row, name=u'zip')
             city = self.getSpecificRecord(header, row, name=u'city')
             company = self.getSpecificRecord(header, row, name=u'company')
-            customer = self.getSpecificRecord(header, row, name=u'customerid')
+            customer = self.getSpecificRecord(header, row, name=u'title')
             phone = self.getSpecificRecord(header, row, name=u'telephone')
             fax = self.getSpecificRecord(header, row, name=u'fax')
             country = self.getSpecificRecord(header, row, name=u'static_info_country')
@@ -90,7 +90,11 @@ class MemberImportForm(form.SchemaForm):
                 'street'    :   street,
                 'zipcode'   :   zipcode,
                 'city'      :   city,
+                'country'   :   country,
                 'company'   :   company,
+                'customer'  :   customer,
+                'fax'       :   fax,
+                'phone'     :   phone,
                 'comment'   :   comment,
                 'salutation':   salutation,
                 'groups'    :   groups,
@@ -102,7 +106,13 @@ class MemberImportForm(form.SchemaForm):
                 IStatusMessage(self.request).addStatusMessage(_(u"Could not create user:") + unicode(e), "error")
                 return None
             if groups:
-                groups_tool.addPrincipalToGroup(member.getUserName(), "companies")
+                for gid in groups:
+                    if gid == '1':
+                        groups_tool.addPrincipalToGroup(member.getUserName(), "group_one")
+                    if gid == '2':
+                        groups_tool.addPrincipalToGroup(member.getUserName(), "group_two")
+                    if gid == '3':
+                        groups_tool.addPrincipalToGroup(member.getUserName(), "group_three")
             processed_records += 1
         
         return processed_records
