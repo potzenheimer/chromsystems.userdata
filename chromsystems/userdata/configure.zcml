@@ -20,6 +20,12 @@
       description="Provides custom user data and registration functionality for chromsystems"
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
+  <genericsetup:importStep
+      name="chromsystems.userdata-various"
+      title="Additional Chromsystems Userdata setup handlers"
+      description="Chromsystems Userdata Site configuration"
+      handler="chromsystems.userdata.setuphandlers.importVarious"
+      />
   <browser:page
       name="register"
       class=".customregistration.CustomRegistrationForm"

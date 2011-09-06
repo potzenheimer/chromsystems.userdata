@@ -1,13 +1,13 @@
 import StringIO
 import csv
+from logging import getLogger
 from five import grok
-from zope import schema
 from plone.directives import form
-from z3c.form import button, field
+from z3c.form import button
 from Acquisition import aq_inner
 from plone.namedfile import field as namedfile
 from Products.CMFCore.utils import getToolByName
-from Products.CMFCore.interfaces import ISiteRoot
+from Products.CMFPlone.utils import safe_unicode
 from plone.app.layout.navigation.interfaces import INavigationRoot
 from Products.statusmessages.interfaces import IStatusMessage
 from chromsystems.userdata import _
@@ -53,10 +53,12 @@ class MemberImportForm(form.SchemaForm):
         """ Process the uploaded file and import member records
         """
         context = aq_inner(self.context)
+        logger = getLogger('Userimport')
         io = StringIO.StringIO(data)
         reader = csv.reader(io, delimiter=';', dialect="excel", quotechar='"')
         header = reader.next()
         regtool = getToolByName(context, 'portal_registration')
+        mtool = getToolByName(self, 'portal_membership')
         groups_tool = getToolByName(context, 'portal_groups')
         processed_records = 0
         for row in reader:
@@ -99,22 +101,29 @@ class MemberImportForm(form.SchemaForm):
                 'salutation':   salutation,
                 'groups'    :   groups,
             }
-            import pdb; pdb.set_trace( )
-            try:
-                member = regtool.addMember(uid, pwd, properties=properties)
-            except ValueError, e:
-                IStatusMessage(self.request).addStatusMessage(_(u"Could not create user:") + unicode(e), "error")
-                return None
-            if groups:
-                for gid in groups:
-                    if gid == '1':
-                        groups_tool.addPrincipalToGroup(member.getUserName(), "group_one")
-                    if gid == '2':
-                        groups_tool.addPrincipalToGroup(member.getUserName(), "group_two")
-                    if gid == '3':
-                        groups_tool.addPrincipalToGroup(member.getUserName(), "group_three")
-            processed_records += 1
-        
+            
+            username = str(uid)
+            logger.info('Processing user: %s' % username)
+            if not self.is_ascii(username):
+                    IStatusMessage(self.request).addStatusMessage(_(u"Username must contain only characters a-z"), "error")
+                    return None
+            if mtool.getMemberById(uid) is None:
+                try:
+                    pwd = pwd.encode('utf-8')
+                    member = regtool.addMember(uid, pwd, properties=properties)
+                    logger.info('Added user: %s' % username)
+                except ValueError, e:
+                    IStatusMessage(self.request).addStatusMessage(_(u"Could not create user:") + unicode(e), "error")
+                    return None
+                if groups:
+                    for group in groups.split(','):
+                        if group == '1':
+                            groups_tool.addPrincipalToGroup(member.getUserName(), "Worldwide")
+                        if group == '2':
+                            groups_tool.addPrincipalToGroup(member.getUserName(), "GermanSpeakingCountries")
+                        if group == '3':
+                            groups_tool.addPrincipalToGroup(member.getUserName(), "Netherlands")
+                processed_records += 1
         return processed_records
     
     def getSpecificRecord(self, header, row, name):
@@ -129,4 +138,10 @@ class MemberImportForm(form.SchemaForm):
         if index is None:
             raise RuntimeError("Uploaded file does not have the column:" + name)
         return row[index].decode("utf-8")
+    
+    def is_ascii(self, s):
+            for c in s:
+                if not ord(c) < 128:
+                    return False
+            return True
     
