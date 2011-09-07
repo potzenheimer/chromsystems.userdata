@@ -7,7 +7,6 @@ from z3c.form import button
 from Acquisition import aq_inner
 from plone.namedfile import field as namedfile
 from Products.CMFCore.utils import getToolByName
-from Products.CMFPlone.utils import safe_unicode
 from plone.app.layout.navigation.interfaces import INavigationRoot
 from Products.statusmessages.interfaces import IStatusMessage
 from chromsystems.userdata import _
@@ -117,11 +116,11 @@ class MemberImportForm(form.SchemaForm):
                     return None
                 if groups:
                     for group in groups.split(','):
-                        if group == '1':
-                            groups_tool.addPrincipalToGroup(member.getUserName(), "Worldwide")
                         if group == '2':
-                            groups_tool.addPrincipalToGroup(member.getUserName(), "GermanSpeakingCountries")
+                            groups_tool.addPrincipalToGroup(member.getUserName(), "Worldwide")
                         if group == '3':
+                            groups_tool.addPrincipalToGroup(member.getUserName(), "GermanSpeakingCountries")
+                        if group == '4':
                             groups_tool.addPrincipalToGroup(member.getUserName(), "Netherlands")
                 processed_records += 1
         return processed_records
