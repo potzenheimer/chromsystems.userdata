@@ -1,7 +1,10 @@
 Changelog
 =========
 
-1.0 (unreleased)
+1.1 (uneleased)
+-------------------
+
+1.0 (2011-09-07)
 -------------------
 
 - Add handler for edgecases in passwords (cb)
