@@ -1,6 +1,14 @@
 Changelog
 =========
 
+1.0 (unreleased)
+-------------------
+
+- Add handler for edgecases in passwords (cb)
+
+- Finish upload and member add view (cb)
+
+
 1.0b9
 -------------------
 
