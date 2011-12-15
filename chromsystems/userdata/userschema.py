@@ -6,6 +6,7 @@ from chromsystems.userdata import _
 from plone.app.users.userdataschema import IUserDataSchemaProvider
 from plone.app.users.userdataschema import IUserDataSchema
 
+
 class UserDataSchemaProvider(object):
     implements(IUserDataSchemaProvider)
 
@@ -14,6 +15,7 @@ class UserDataSchemaProvider(object):
         """
         return IEnhancedUserDataSchema
 
+
 class IEnhancedUserDataSchema(IUserDataSchema):
     """ Use all the fields from the default user data schema, and add various
     extra fields.
@@ -21,9 +23,8 @@ class IEnhancedUserDataSchema(IUserDataSchema):
     salutation = schema.Choice(
         title=_(u'label_salutation', default=u'Salutation'),
         values = [
-            _(u'Frau'), 
-            _(u'Herr'),
-            ],
+            _(u'Frau'),
+            _(u'Herr'), ],
         default=u'Frau',
         required=True,
         )
@@ -37,7 +38,7 @@ class IEnhancedUserDataSchema(IUserDataSchema):
         )
     customer = schema.TextLine(
         title=_(u'label_customer', default=u'Customer'),
-        description=_(u'help_customer', 
+        description=_(u'help_customer',
             default=u'Please enter your customer identification.'),
         required=False,
         )
@@ -72,8 +73,7 @@ class IEnhancedUserDataSchema(IUserDataSchema):
     comment = schema.Text(
         title=_(u'label_comments', default=u'Comments'),
         description=_(u'help_comments',
-                      default=u"If you have any comments concerning your registration, please "
-                        "leave them here."),
+                      default=u"If you have any comments concerning your "
+                        "registration, please leave them here."),
         required=False,
         )
-

@@ -11,43 +11,49 @@ from plone.app.layout.navigation.interfaces import INavigationRoot
 from Products.statusmessages.interfaces import IStatusMessage
 from chromsystems.userdata import _
 
+
 class IMemberImport(form.Schema):
     """Member import schema"""
-    
+
     csvfile = namedfile.NamedFile(
         title=_(u"File Upload"),
-        description=_(u"Please upload a file in csv format containing the user information to be imported."),
+        description=_(u"Please upload a file in csv format containing the "
+                      u"user information to be imported."),
         required=True,
     )
-    
+
+
 class MemberImportForm(form.SchemaForm):
     grok.context(INavigationRoot)
     grok.require('zope2.View')
     grok.name('user-import')
-    
+
     schema = IMemberImport
     ignoreContext = True
-    
+
     label =_(u"Member Import Form")
-    description = _(u"Upload existing member information by supplying a csv file.")
-    
+    description = _(u"Upload existing member information by supplying a "
+                    u"csv file.")
+
     def update(self):
         self.request.set('disable_border', True)
         super(MemberImportForm, self).update()
-    
+
     @button.buttonAndHandler(_(u"Import"))
     def handleApply(self, action):
         data, errors = self.extractData()
         if errors:
             self.status = self.formErrorsMessage
             return
-        
+
         # Process uplaoded file and import member records
         userdata = data['csvfile'].data
         member_records = self.processMemberRecordsFile(userdata)
         if member_records is not None:
-            IStatusMessage(self.request).addStatusMessage(_(u"Imported member records: ") + unicode(member_records), "info")
-    
+            IStatusMessage(self.request).addStatusMessage(
+                _(u"Imported member records: ") + unicode(member_records),
+                "info")
+
     def processMemberRecordsFile(self, data):
         """ Process the uploaded file and import member records
         """
@@ -74,7 +80,8 @@ class MemberImportForm(form.SchemaForm):
             customer = self.getSpecificRecord(header, row, name=u'title')
             phone = self.getSpecificRecord(header, row, name=u'telephone')
             fax = self.getSpecificRecord(header, row, name=u'fax')
-            country = self.getSpecificRecord(header, row, name=u'static_info_country')
+            country = self.getSpecificRecord(
+                header, row, name=u'static_info_country')
             comment = self.getSpecificRecord(header, row, name=u'comments')
             groups = self.getSpecificRecord(header, row, name=u'usergroup')
             gender = self.getSpecificRecord(header, row, name=u'gender')
@@ -83,48 +90,54 @@ class MemberImportForm(form.SchemaForm):
             else:
                 salutation = u'Herr'
             properties = {
-                'username'  :   uid.lower(),
-                'fullname'  :   fullname.encode('utf-8'),
-                'email'     :   email,
-                'firstname' :   firstname,
-                'lastname'  :   lastname,
-                'street'    :   street,
-                'zipcode'   :   zipcode,
-                'city'      :   city,
-                'country'   :   country,
-                'company'   :   company,
-                'customer'  :   customer,
-                'fax'       :   fax,
-                'phone'     :   phone,
-                'comment'   :   comment,
-                'salutation':   salutation,
-                'groups'    :   groups,
+                'username': uid.lower(),
+                'fullname': fullname.encode('utf-8'),
+                'email': email,
+                'firstname': firstname,
+                'lastname': lastname,
+                'street': street,
+                'zipcode': zipcode,
+                'city': city,
+                'country': country,
+                'company': company,
+                'customer': customer,
+                'fax': fax,
+                'phone': phone,
+                'comment': comment,
+                'salutation': salutation,
+                'groups': groups,
             }
-            
+
             username = str(uid)
             logger.info('Processing user: %s' % username)
             if not self.is_ascii(username):
-                    IStatusMessage(self.request).addStatusMessage(_(u"Username must contain only characters a-z"), "error")
-                    return None
+                IStatusMessage(self.request).addStatusMessage(
+                    _(u"Username must contain only characters a-z"), "error")
+                return None
             if mtool.getMemberById(uid) is None:
                 try:
                     pwd = pwd.encode('utf-8')
                     member = regtool.addMember(uid, pwd, properties=properties)
                     logger.info('Added user: %s' % username)
                 except ValueError, e:
-                    IStatusMessage(self.request).addStatusMessage(_(u"Could not create user:") + unicode(e), "error")
+                    IStatusMessage(self.request).addStatusMessage(
+                        _(u"Could not create user:") + unicode(e), "error")
                     return None
                 if groups:
                     for group in groups.split(','):
+                        username = member.getUsername()
                         if group == '2':
-                            groups_tool.addPrincipalToGroup(member.getUserName(), "Worldwide")
+                            groups_tool.addPrincipalToGroup(
+                                username, "Worldwide")
                         if group == '3':
-                            groups_tool.addPrincipalToGroup(member.getUserName(), "GermanSpeakingCountries")
+                            groups_tool.addPrincipalToGroup(
+                                username, "GermanSpeakingCountries")
                         if group == '4':
-                            groups_tool.addPrincipalToGroup(member.getUserName(), "Netherlands")
+                            groups_tool.addPrincipalToGroup(
+                                username, "Netherlands")
                 processed_records += 1
         return processed_records
-    
+
     def getSpecificRecord(self, header, row, name):
         """ Process a specific record in the import file accessing
             a specific cell by its name
@@ -135,12 +148,12 @@ class MemberImportForm(form.SchemaForm):
             if header[i].decode("utf-8") == name:
                 index = i
         if index is None:
-            raise RuntimeError("Uploaded file does not have the column:" + name)
+            raise RuntimeError(
+                "Uploaded file does not have the column:" + name)
         return row[index].decode("utf-8")
-    
+
     def is_ascii(self, s):
-            for c in s:
-                if not ord(c) < 128:
-                    return False
-            return True
-    
+        for c in s:
+            if not ord(c) < 128:
+                return False
+        return True
